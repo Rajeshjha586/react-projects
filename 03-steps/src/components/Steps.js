@@ -1,20 +1,9 @@
 import React, { useState } from "react";
+import Button from "./Button";
+import StepMessage from "./StepMessage";
+import { messages } from "./messages";
 
-const messages = [
-  "Learn React ⚛️",
-  "Apply for jobs 💼",
-  "Invest your new income 🤑",
-];
-
-export default function App() {
-  return (
-    <>
-      <Steps />
-    </>
-  );
-}
-
-function Steps() {
+export default function Steps() {
   const [step, setStep] = useState(1);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -42,23 +31,22 @@ function Steps() {
             <div className={step >= 3 ? "active" : ""}>3</div>
           </div>
 
-          <p className="message">
-            Step {step}: {messages[step - 1]}
-          </p>
+          <StepMessage step={step}>{messages[step - 1]}</StepMessage>
 
           <div className="buttons">
-            <button
+            <Button
               style={{ backgroundColor: "#7950f2", color: "#fff" }}
               onClick={handlePreviousClick}
             >
-              Previous
-            </button>
-            <button
+              <span>👈</span> Previous
+            </Button>
+
+            <Button
               style={{ backgroundColor: "#7950f2", color: "#fff" }}
               onClick={handleNextClick}
             >
-              Next
-            </button>
+              <span>👉</span> Next
+            </Button>
           </div>
         </div>
       )}
